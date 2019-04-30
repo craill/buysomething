@@ -186,7 +186,8 @@
         <div class="wrap-box">
           <ul class="img-list">
             <li v-for="(it, i) in item.datas" :key="i">
-              <a href="#/site/goodsinfo/92" class>
+              <!-- <a href="#/site/goodsinfo/92" class> -->
+              <router-link to="/detail">
                 <div class="img-box">
                   <img
                     :src="it.img_url"
@@ -205,7 +206,8 @@
                     </span>
                   </p>
                 </div>
-              </a>
+                </router-link>
+              <!-- </a> -->
             </li>
           
           </ul>
@@ -243,7 +245,7 @@ export default {
         
       }),
       axios.get('http://111.230.232.110:8899/site/goods/getgoodsgroup').then(res=>{
-        console.log(res);
+        // console.log(res);
         this.productlist=res.data.message
       })
   },

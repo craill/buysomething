@@ -14,11 +14,13 @@ import VueRouter from 'vue-router'
 import './assets/statics/site/css/style.css'
 // 导入组件
 import index from './components/index.vue'
+import detail from './components/detail.vue'
 //2.router-use
 Vue.use(VueRouter)
 // 3.新建路由规则
 const routes=[
-  {path:'/index',component:index}
+  {path:'/index',component:index},
+  {path:'/detail',component:detail},
 ]
 // 4.实例化路由
 const router = new VueRouter({
