@@ -1,5 +1,12 @@
 import Vue from 'vue'
 import App from './App.vue'
+// 引入饿了么ui
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+
+
+Vue.use(ElementUI);
+
 //1.导入路由
 import VueRouter from 'vue-router'
 // 导入css样式,如果不用这个变量,可以省略xxx from
