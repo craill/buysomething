@@ -649,6 +649,8 @@
 
 <script>
 import axios from 'axios'
+// 引入moment组件
+import moment from 'moment'
 
 
 export default {
@@ -671,8 +673,13 @@ export default {
       })
   },
   filters:{
+    // 改变时间样式,
     change(value){
-      return   value.split('T')[0]
+      // 1.字符串分割
+      // return   value.split('T')[0]
+      // 2.使用moment
+      return moment(value).format('YYYY年MM月DD日')
+      // return moment(value).format('YYYY年MM月DD日hh时mm分ss秒')
     }
   }
 }
