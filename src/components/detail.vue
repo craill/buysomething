@@ -167,12 +167,18 @@
                 <ul class="side-img-list">
                   <li v-for="(item, index) in hotgoodslist" :key="index">
                     <div class="img-box">
-                      <a href="#/site/goodsinfo/90" class>
+                      <!-- <a href="#/site/goodsinfo/90" class> -->
+                      <router-link :to="'/detail/'+item.id">
                         <img :src="item.img_url">
-                      </a>
+                        </router-link>
+                      <!-- </a> -->
                     </div>
                     <div class="txt-box">
-                      <a href="#/site/goodsinfo/90" class>{{item.title}}</a>
+                      <!-- <a href="#/site/goodsinfo/90" class> -->
+                       <router-link :to="'/detail/'+item.id">
+                      {{item.title}}
+                        </router-link>
+                      <!-- </a> -->
                       <span>{{item.add_time | change}}</span>
                     </div>
                   </li>
@@ -187,7 +193,8 @@
 </template>
 
 <script>
-import axios from "axios";
+// import { log } from 'util';
+// import axios from "axios";
 export default {
   name: "detail",
   data() {
@@ -196,14 +203,28 @@ export default {
       goodsinfo: {},
       imglist: [],
       num:1,
-      isdesc:true
+      isdesc:true,
+      pageIndex:1,
+      pageSize:10,
+      message:[]
     };
   },
+methods:{
+  getComments(){
+    this.$axios.get(`/site/comment/getbypage/goods/${this.$route.params.id}?pageIndex=${this.pageIndex}&pageSize=${this.pageSize}`).then(res=>{
+      console.log(res);
+      this.pageIndex=res.data.pageIndex
+      this.pageSize=res.data.pageSize
+      this.message=res.data.message
+      
+    })
+  }
+},
   created() {
     // console.log(this.$route.params.id);
-    axios
+    this.$axios
       .get(
-        `http://111.230.232.110:8899/site/goods/getgoodsinfo/${
+        `/site/goods/getgoodsinfo/${
           this.$route.params.id
         }`
       )
@@ -213,6 +234,21 @@ export default {
         this.goodsinfo = res.data.message.goodsinfo;
         this.imglist = res.data.message.imglist;
       });
+      this.getComments()
+  },
+  watch:{
+   "$route.params.id"(newval){
+      this.$axios
+      .get(
+        `http://111.230.232.110:8899/site/goods/getgoodsinfo/${newval}`
+      )
+      .then(res => {
+        // console.log(res);
+        this.hotgoodslist = res.data.message.hotgoodslist;
+        this.goodsinfo = res.data.message.goodsinfo;
+        this.imglist = res.data.message.imglist;
+      });
+   }
   }
 };
 </script>

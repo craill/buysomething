@@ -15,6 +15,7 @@ import './assets/statics/site/css/style.css'
 // 导入组件
 import index from './components/index.vue'
 import detail from './components/detail.vue'
+import usercenter from './components/usercenter.vue'
 import Axios from 'axios';
 //2.router-use
 Vue.use(VueRouter)
@@ -24,6 +25,7 @@ const routes=[
   {path:'/',component:index},
   {path:'/index',component:index},
   {path:'/detail/:id',component:detail},
+  {path:'/usercenter',component:usercenter},
 ]
 // 4.实例化路由
 const router = new VueRouter({
