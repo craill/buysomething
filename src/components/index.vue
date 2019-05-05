@@ -219,7 +219,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+// import axios from 'axios'
 // 引入moment组件
 import moment from 'moment'
 
@@ -236,7 +236,7 @@ export default {
     }
     },
   created() {
-      axios.get('http://111.230.232.110:8899/site/goods/gettopdata/goods').then(res => {
+      this.$axios.get('/site/goods/gettopdata/goods').then(res => {
         // console.log(res);
         this.catelist = res.data.message.catelist;
         this.sliderlist = res.data.message.sliderlist;
@@ -244,7 +244,7 @@ export default {
         // console.log(res);
         
       }),
-      axios.get('http://111.230.232.110:8899/site/goods/getgoodsgroup').then(res=>{
+      this.$axios.get('/site/goods/getgoodsgroup').then(res=>{
         // console.log(res);
         this.productlist=res.data.message
       })

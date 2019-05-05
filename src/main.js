@@ -15,6 +15,7 @@ import './assets/statics/site/css/style.css'
 // 导入组件
 import index from './components/index.vue'
 import detail from './components/detail.vue'
+import Axios from 'axios';
 //2.router-use
 Vue.use(VueRouter)
 // 3.新建路由规则
@@ -30,6 +31,11 @@ const router = new VueRouter({
 })
 
 Vue.config.productionTip = false
+//在Vue原型中添加$axios,使得每个Vue实例都可以使用axios
+Vue.prototype.$axios=Axios
+//设置axio基地址
+Axios.defaults.baseURL='http://111.230.232.110:8899'
+
 
 new Vue({
   render: h => h(App),
