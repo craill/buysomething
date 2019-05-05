@@ -35,7 +35,11 @@ Vue.config.productionTip = false
 Vue.prototype.$axios=Axios
 //设置axio基地址
 Axios.defaults.baseURL='http://111.230.232.110:8899'
-
+//将日期过滤器抽取为全局过滤器
+import moment from 'moment'
+Vue.filter('change', value=>{
+    return moment(value).format('YYYY年MM月DD日')
+})
 
 new Vue({
   render: h => h(App),

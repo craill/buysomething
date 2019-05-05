@@ -48,35 +48,13 @@
                     <dt>购买数量</dt>
                     <dd>
                       <div class="stock-box">
-                        <div class="el-input-number el-input-number--small">
-                          <span role="button" class="el-input-number__decrease is-disabled">
-                            <i class="el-icon-minus"></i>
-                          </span>
-                          <span role="button" class="el-input-number__increase">
-                            <i class="el-icon-plus"></i>
-                          </span>
-                          <div class="el-input el-input--small">
-                            <!---->
-                            <input
-                              autocomplete="off"
-                              size="small"
-                              type="text"
-                              rows="2"
-                              max="60"
-                              min="1"
-                              validateevent="true"
-                              class="el-input__inner"
-                              role="spinbutton"
-                              aria-valuemax="60"
-                              aria-valuemin="1"
-                              aria-valuenow="1"
-                              aria-disabled="false"
-                            >
-                            <!---->
-                            <!---->
-                            <!---->
-                          </div>
-                        </div>
+                        <el-input-number
+                          v-model="num"
+                       
+                          :min="1"
+                          :max=goodsinfo.stock_quantity
+                          label="描述文字"
+                        ></el-input-number>
                       </div>
                       <span class="stock-txt">
                         库存
@@ -103,17 +81,17 @@
               >
                 <ul>
                   <li>
-                    <a href="javascript:;" class="selected">商品介绍</a>
+                    <a href="javascript:;" :class="{selected:isdesc}" @click="isdesc=true">商品介绍</a>
                   </li>
                   <li>
-                    <a href="javascript:;">商品评论</a>
+                    <a href="javascript:;" :class="{selected:!isdesc}" @click="isdesc=false">商品评论</a>
                   </li>
                 </ul>
               </div>
-              <div class="tab-content entry" style="display: block;" v-html="goodsinfo.content">
+              <div class="tab-content entry" v-show="isdesc" v-html="goodsinfo.content">
                 <!-- 内容 -->
               </div>
-              <div class="tab-content" style="display: block;">
+              <div class="tab-content" v-show="!isdesc">
                 <div class="comment-box">
                   <div id="commentForm" name="commentForm" class="form-box">
                     <div class="avatar-box">
@@ -195,7 +173,7 @@
                     </div>
                     <div class="txt-box">
                       <a href="#/site/goodsinfo/90" class>{{item.title}}</a>
-                      <span>{{item.add_time}}</span>
+                      <span>{{item.add_time | change}}</span>
                     </div>
                   </li>
                 </ul>
@@ -216,7 +194,9 @@ export default {
     return {
       hotgoodslist: [],
       goodsinfo: {},
-      imglist: []
+      imglist: [],
+      num:1,
+      isdesc:true
     };
   },
   created() {
@@ -228,7 +208,7 @@ export default {
         }`
       )
       .then(res => {
-        console.log(res);
+        // console.log(res);
         this.hotgoodslist = res.data.message.hotgoodslist;
         this.goodsinfo = res.data.message.goodsinfo;
         this.imglist = res.data.message.imglist;
@@ -243,7 +223,7 @@ export default {
   margin: 0 auto;
 }
 .pic-box {
-width: 415px;
+  width: 360px;
   /* height: 310px; */
 }
 </style>
