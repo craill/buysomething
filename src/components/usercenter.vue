@@ -69,7 +69,7 @@
                             </div>
                         </div>
                         <div class="right-auto">
-                          
+                          <router-view></router-view>
                         </div>
                     </div>
                 </div>
