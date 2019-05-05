@@ -20,7 +20,7 @@ Vue.use(VueRouter)
 // 3.新建路由规则
 const routes=[
   {path:'/index',component:index},
-  {path:'/detail',component:detail},
+  {path:'/detail/:id',component:detail},
 ]
 // 4.实例化路由
 const router = new VueRouter({

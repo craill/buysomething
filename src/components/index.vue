@@ -187,7 +187,7 @@
           <ul class="img-list">
             <li v-for="(it, i) in item.datas" :key="i">
               <!-- <a href="#/site/goodsinfo/92" class> -->
-              <router-link to="/detail">
+              <router-link :to="'/detail/'+it.artID">
                 <div class="img-box">
                   <img
                     :src="it.img_url"
