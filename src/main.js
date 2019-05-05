@@ -19,6 +19,8 @@ import detail from './components/detail.vue'
 Vue.use(VueRouter)
 // 3.新建路由规则
 const routes=[
+  // 页面重定向
+  {path:'/',component:index},
   {path:'/index',component:index},
   {path:'/detail/:id',component:detail},
 ]
