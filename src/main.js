@@ -17,6 +17,8 @@ import index from './components/index.vue'
 import detail from './components/detail.vue'
 import usercenter from './components/usercenter.vue'
 import Axios from 'axios';
+import myorder from './components/myorder.vue'
+import specialorder from './components/specialorder.vue'
 //2.router-use
 Vue.use(VueRouter)
 // 3.新建路由规则
@@ -25,7 +27,16 @@ const routes=[
   {path:'/',component:index},
   {path:'/index',component:index},
   {path:'/detail/:id',component:detail},
-  {path:'/usercenter',component:usercenter},
+  {path:'/usercenter',component:usercenter,children: [
+    {
+      path: 'myorder',
+      component: myorder
+    },
+    {
+      path: '',
+      component: specialorder
+    }
+  ]},
 ]
 // 4.实例化路由
 const router = new VueRouter({

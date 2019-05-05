@@ -35,8 +35,11 @@
                                             </h2>
                                             <div class="list">
                                                 <p>
-                                                    <a href="#/site/member/orderlist" class="">
-                                                        <i class="iconfont icon-arrow-right"></i>交易订单</a>
+                                                    <!-- <a href="#/site/member/orderlist" class=""> -->
+                                                    <router-link to="/usercenter/myorder">
+                                                        <i class="iconfont icon-arrow-right"></i>交易订单
+                                                        <!-- </a> -->
+                                                        </router-link>
                                                 </p>
                                             </div>
                                         </li>
